@@ -10,7 +10,7 @@ local options = {
 
     -- Automatically hide the tabline when there are this many buffers left.
     -- Set to any value >=0 to enable.
-    auto_hide = false,
+    auto_hide = 1,
 
     -- Enable/disable current/total tabpages indicator (top right corner)
     tabpages = true,

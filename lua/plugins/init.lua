@@ -142,7 +142,16 @@ local plugins = {
     'mg979/vim-visual-multi',
 
     -- Autosave files on certain events
-    { "907th/vim-auto-save", event = "InsertEnter" },
+    -- { "907th/vim-auto-save", event = "InsertEnter" },
+    {
+        "pocco81/auto-save.nvim",
+        opts = function()
+            return require "plugins.config.auto_save"
+        end,
+        config = function(_, opts)
+            require("auto-save").setup(opts)
+        end,
+    },
 
     -- Show undo history visually
     { "simnalamburt/vim-mundo", cmd = { "MundoToggle", "MundoShow" } },
@@ -319,6 +328,7 @@ local plugins = {
             'lewis6991/gitsigns.nvim', -- OPTIONAL: for git status
             'nvim-tree/nvim-web-devicons', -- OPTIONAL: for file icons
         },
+        event = { "BufEnter" },
         init = function() vim.g.barbar_auto_setup = false end,
         opts = function()
             return require('plugins.config.barbar')
@@ -327,6 +337,15 @@ local plugins = {
         config = function(_, opts)
             require('barbar').setup(opts)
         end
+    },
+
+    -- Manage your yank history
+    {
+        "gbprod/yanky.nvim",
+        cmd = { "YankyRingHistory" },
+        config = function()
+            require("config.yanky")
+        end,
     },
 
 }
